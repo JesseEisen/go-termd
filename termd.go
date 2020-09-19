@@ -106,7 +106,9 @@ func (c *Compiler) visit(n *blackfriday.Node) (s string) {
 		s = fmt.Sprintf("%s\n", text.Indent(s, "    "))
 	case blackfriday.Code:
 		s = fmt.Sprintf("\033[38;5;102m`%s`\033[m", string(n.Literal))
-	case blackfriday.HTMLSpan:
+    case blackfriday.Table:
+        s = fmt.Sprintf("%s\n", string(n.Literal))
+    case blackfriday.HTMLSpan:
 		// ignore
 	default:
 		s = fmt.Sprintf("<unhandled: %v>", n)
